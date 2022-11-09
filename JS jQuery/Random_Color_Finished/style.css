@@ -1,0 +1,29 @@
+.colorDisplay {
+    background-color: white;
+    margin: 0 auto;
+    width: 500px;
+    height: 500px;
+}
+
+.wrapper {
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+}
+
+.restart {
+    margin-left: auto;
+}
+
+.newColor,
+.restart {
+    text-align: center;
+    max-width: 250px;
+    color: white;
+}
+
+.newColor:hover,
+.restart:hover {
+    background-color: rgba(127, 127, 127, 0.51);
+}

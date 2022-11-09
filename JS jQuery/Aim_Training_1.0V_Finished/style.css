@@ -1,0 +1,35 @@
+#stopStart {
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    background-color: black;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+#stopStart:hover {
+    background-color: #5a5a5a;
+}
+
+#game {
+    display: flex;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#start {
+    display: block;
+    font-size: 40px;
+    font-family: sans-serif;
+    padding: 10px 50px;
+    background-color: aqua;
+}
+
+#start:hover {
+    background-color: #71ffff;
+}
+.remove{
+    position: absolute;
+}

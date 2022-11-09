@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <meta charset=utf-8/>
+  <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<p><a id="w3r" type="text/html" hreflang="en-us" rel="nofollow" target="_self" href="https://www.w3resource.com/">w3resource</a>
+</p>
+<button onclick="getAttributes()">Click here to get attributes value</button>
+<script>
+    $(function (){
+        $("button").click(function (){
+            var id = $("p a").attr("id");
+            var type = $("p a").attr("type");
+            var hreflang = $("p a").attr("hreflang");
+            var ref = $("p a").attr("ref");
+            var target = $("p a").attr("target");
+            var href = $("p a").attr("href");
+
+            alert(id+"  "+type+"  "+hreflang+"  "+ref+"  "+target+"  "+href);
+        });
+    });
+</script>
+</body>
