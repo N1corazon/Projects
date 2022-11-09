@@ -1,12 +1,15 @@
 $(function () {
     let gameArea = $("#game-area");
     let maxGameArea = 20;
+    let countBy = 1;
 
     let playerLength = 4;
     let playerPos = {
         "tr": 9,
         "td": 9
     };
+
+
     let playerDir = {
         "up": 1,
         "right": 2,
@@ -44,13 +47,21 @@ $(function () {
     document.addEventListener("keydown", function (event) {
         console.log(event);
         if (event.which == 38) {
-            currentPlayerDir = playerDir["up"];
+            if (currentPlayerDir != 3) {
+                currentPlayerDir = playerDir["up"];
+            }
         } else if (event.which == 39) {
-            currentPlayerDir = playerDir["right"];
+            if (currentPlayerDir != 4) {
+                currentPlayerDir = playerDir["right"];
+            }
         } else if (event.which == 40) {
-            currentPlayerDir = playerDir["down"];
+            if (currentPlayerDir != 1) {
+                currentPlayerDir = playerDir["down"];
+            }
         } else if (event.which = 37) {
-            currentPlayerDir = playerDir["left"];
+            if (currentPlayerDir != 2) {
+                currentPlayerDir = playerDir["left"];
+            }
         }
     });
 
@@ -82,7 +93,7 @@ $(function () {
     }
 
     function drawPlayer() {
-        frameCount += 1;
+        frameCount += countBy;
         let getPlayerPos;
 
         switch (currentPlayerDir) {
@@ -122,14 +133,20 @@ $(function () {
     }
 
     function scoreHandler() {
-        console.log(gameScore);
+        console.log(gameScore)
         $("#game-score").html(gameScore);
     }
 
     scoreHandler();
-    setInterval(function () {
+
+    function congratulation() {
+        jQuery("td,tr").css("background-color", "green");
+    }
+
+    let inProgress = setInterval(function () {
         let checkNextPlayerPosX = playerPos["tr"];
         let checkNextPlayerPosY = playerPos["td"];
+        const inProgressCopy = inProgress;
 
         switch (currentPlayerDir) {
             case 1:
@@ -151,17 +168,29 @@ $(function () {
         //Death by wall touch
         if (playerPos["tr"] == 20 || playerPos["td"] == 20 || playerPos["tr"] == -1 || playerPos["td"] == -1) {
             deathHandler();
+            clearInterval(inProgressCopy);
         }
         //Death by eating self
         else if ($(".tr" + checkNextPlayerPosX + "td" + checkNextPlayerPosY).hasClass("draw-player")) {
             deathHandler();
+            countBy = 0;
+            const deathPos = {
+                "tr": playerPos["tr"],
+                "td": playerPos["td"]
+            }
+            playerPos = deathPos;
+            clearInterval(inProgressCopy);
         }
         //Gain point
         else if (playerPos["tr"] == pointPos["posX"] && playerPos['td'] == pointPos["posY"]) {
             playerEatsPoint();
             drawPlayer();
-            scoreHandler()
-
+            scoreHandler();
+        }
+        //Win
+        else if (playerLength == 400) {
+            congratulation();
+            clearInterval(inProgressCopy);
         } else {
             drawPlayer();
         }
