@@ -9,7 +9,6 @@ $(function () {
         "td": 9
     };
 
-
     let playerDir = {
         "up": 1,
         "right": 2,
@@ -46,20 +45,20 @@ $(function () {
 
     document.addEventListener("keydown", function (event) {
         console.log(event);
-        if (event.which == 38) {
-            if (currentPlayerDir != 3) {
+        if (event.which === 38) {
+            if (currentPlayerDir !== 3) {
                 currentPlayerDir = playerDir["up"];
             }
-        } else if (event.which == 39) {
-            if (currentPlayerDir != 4) {
+        } else if (event.which === 39) {
+            if (currentPlayerDir !== 4) {
                 currentPlayerDir = playerDir["right"];
             }
-        } else if (event.which == 40) {
-            if (currentPlayerDir != 1) {
+        } else if (event.which === 40) {
+            if (currentPlayerDir !== 1) {
                 currentPlayerDir = playerDir["down"];
             }
-        } else if (event.which = 37) {
-            if (currentPlayerDir != 2) {
+        } else if (event.which === 37) {
+            if (currentPlayerDir !== 2) {
                 currentPlayerDir = playerDir["left"];
             }
         }
@@ -117,7 +116,6 @@ $(function () {
                 getPlayerPos = $(".tr" + playerPos["tr"] + "td" + playerPos["td"]);
                 getPlayerPos.addClass("draw-player frameCount" + frameCount);
                 break;
-
             default:
                 alert("Error drawing player!!");
                 break;
@@ -165,6 +163,7 @@ $(function () {
                 alert("Error checking player collision!!");
                 break;
         }
+
         //Death by wall touch
         if (playerPos["tr"] == 20 || playerPos["td"] == 20 || playerPos["tr"] == -1 || playerPos["td"] == -1) {
             deathHandler();
@@ -194,6 +193,7 @@ $(function () {
         } else {
             drawPlayer();
         }
+
     }, 200);
 
 })
